@@ -1,0 +1,546 @@
+% The CDE description
+The \emph{Constant Difference of Elasticities} (CDE) function is a generalization of the CES
+function, but it allows for more flexibility in terms of substitution effects across goods and
+for non-homotheticity.\footnote{More detailed descriptions of the CDE can be found in
+\cite{Herteletal1991}, \cite{Surry1993} and \cite{Hertel1997}.}  The starting point is an
+implicitly additive indirect utility function (see \cite{Hanoch1975}) from which we can derive
+demand using Roy's identity (and the implicit function theorem).
+
+\subsection{General form}
+
+A dual approach is used to determine the properties of the CDE function. The indirect utility
+function is defined implicitly via the following expression:
+
+\begin{equation}
+\label{eq:CDEV}
+V(p,u,Y) = \sum_{i=1}^{n}{\alpha_iu^{e_i b_i}\left( \frac{p_i}{y}\right)^{b_i}} \equiv 1
+\end{equation}
+
+\noindent where $p$ is the vector of commodity prices, $u$ is (per capita) utility and $y$ is
+per capita income. Using Roy's identity and the implicit function theorem\footnote{See
+\cite{Varian1992}, p. 109.} we can derive demand, $x$, where $v$ is the indirect utility function
+(defined implicitly):
+
+\begin{equation}
+{x_i} =  - \frac{{\partial v}}{{\partial {p_i}}} /
+\frac{{\partial v}}{{\partial Y}} =
+- \left( {\frac{{\partial V}}{{\partial {p_i}}} /
+\frac{{\partial V}}{{\partial u}}} \right) /
+\left( {\frac{{\partial V}}{{\partial Y}} /
+\frac{{\partial V}}{{\partial u}}} \right)
+=  - \left( {\frac{{\partial V}}{{\partial {p_i}}}/\frac{{\partial V}}{{\partial Y}}} \right)
+\end{equation}
+
+\noindent This then leads to the following demand function:
+
+\begin{equation}
+\label{eq:CDEP}
+{x_i} = \frac{{{\alpha_i}{b_i}{u^{{e_i}{b_i}}}{{\left( {\frac{{{p_i}}}{y}} \right)}^{{b_i} - 1}}}}
+{{\sum\limits_j {{\alpha_j}{b_j}{u^{{e_j}{b_j}}}{{\left( {\frac{{{p_j}}}{y}} \right)}^{{b_j}}}} }}
+\end{equation}
+
+Implementation is easier if we define the following variable:
+
+\begin{equation}
+\mathit{ZC}_i = \alpha_i b_i u^{e_i b_i}\left( \frac{p_i}{y}\right)^{b_i}
+\end{equation}
+
+\noindent Then the budget shares can be expressed as:
+
+\begin{equation}
+s_i = \frac{\mathit{ZC}_i}{\sum_j{\mathit{ZC}_j}}
+\end{equation}
+
+\noindent and the demand expression is:
+
+\begin{equation}
+x_i = \frac{s_i}{p_i} y
+\end{equation}
+
+\noindent Implementation also requires evaluating $u$. This can be
+done by implementing equation~(\ref{eq:CDEV}) and inserting the
+expression for $\mathit{ZC}$:
+
+\begin{equation}
+\sum_{i=1}^{n}{\frac {\mathit{ZC}_i} {b_i} } \equiv 1
+\end{equation}
+
+\subsection{Elasticities}
+
+In order to calibrate the CDE system, it is necessary to derive the demand and income elasticities
+of the CDE. The algebra is tedious, but straightforward.
+
+The own-price elasticity is given by the following:
+
+\begin{equation}
+\label{eq:EPS0}
+\varepsilon_i = \frac{\partial x_i} {\partial p_i} \frac{p_i}{x_i} =
+\frac{\displaystyle s_i \left[\sum_j {s_j e_j b_j} - e_i b_i  \right]} 
+{\displaystyle \sum_j {s_j e_j}}
++ b_i \left( 1 - s_i \right) - 1
+\end{equation}
+
+\noindent In deriving the elasticity, we make use of the following formula that defines the
+elasticity of utility with respect to price (and again makes use of the implicit function theorem):
+
+\begin{equation}
+\frac{{\partial u}}{{\partial {p_i}}}\frac{{{p_i}}}{u} =  - \frac{{{p_i}}}{u}\left(
+{\frac{{\partial V}}{{\partial {p_i}}}} \right)/\left( {\frac{{\partial V}}{{\partial u}}} \right)
+=  - \frac{{{s_i}}}{{\sum\limits_j {{s_j}{e_j}} }}
+\end{equation}
+
+\noindent The price elasticity of utility is approximately the value share of the respective demand
+component as long as the weighted sum of the expansion parameters, $e$, is close to unity.
+The value (or budget) share is defined in the next equation:
+
+\begin{equation}
+s_i = \frac{p_i x_i}{y}
+\end{equation}
+
+\noindent Letting $\sigma_i = 1-b_i$ (or $b_i = 1-\sigma_i$), we can also write:
+
+\begin{equation}
+{\varepsilon_i} = {s_i}\left[ {{\sigma_i} - \frac{{{e_i}(1 - {\sigma_i})}}
+{{\sum\limits_j {{s_j}{e_j}} }} - \frac{{\sum\limits_j {{s_j}{e_j}{\sigma_j}} }}
+{{\sum\limits_j {{s_j}{e_j}} }}} \right] - {\sigma_i}
+\end{equation}
+
+\noindent With $\sigma$ uniform, we also have:
+
+\begin{equation}
+{\varepsilon_i} =  - \frac{{{s_i}{e_i}(1 - \sigma )}}{{\sum\limits_j {{s_j}{e_j}} }} - \sigma
+\end{equation}
+
+\noindent With both $e$ and $\sigma$ uniform, the formula simplifies to:
+
+\begin{equation}
+\label{eq:CESELAS}
+{\varepsilon_i} =  - {s_i}(1 - \sigma ) - \sigma  = \sigma ({s_i} - 1) - {s_i}
+\end{equation}
+
+\noindent Equation~(\ref{eq:CESELAS}) reflects the own-price elasticity for the standard CES
+utility function. Finally, with $e$ uniform but not $\sigma$, we have:
+
+\begin{equation}
+{\varepsilon_i} = {s_i}\left[ {2{\sigma_i} - 1 - \sum\limits_j {{s_j}{\sigma_j}} } \right]
+- {\sigma_i}
+\end{equation}
+
+The derivation of the cross elasticities is almost identical and will not be carried out here.
+Combining both the own-and cross price elasticities, the matrix of substitution elasticities
+takes the following form where we use the Kronecker product, $\delta$:\footnote{$\delta$ takes
+the value of 1 along the diagonal (i.e. when $i=j$) and the value 0 off-diagonal
+(i.e. when $i \ne j$).}
+
+\begin{equation}
+{\varepsilon_{ij}} = {s_j}\left[ { - {b_j} - \frac{{{e_i}{b_i}}}{{\sum\limits_k {{s_k}{e_k}} }}
++ \frac{{\sum\limits_k {{s_k}{e_k}{b_k}} }}{{\sum\limits_k {{s_k}{e_k}} }}} \right]
++ {\delta_{ij}}({b_i} - 1)
+\end{equation}
+
+\noindent Again, we replace $b$ by $1-\sigma$, to get:
+
+\begin{equation}
+\label{eq:EPS}
+{\varepsilon_{ij}} = {s_j}\left[ {{\sigma_j} - \frac{{{e_i}(1 - {\sigma_i})}}
+{{\sum\limits_k {{s_k}{e_k}} }} - \frac{{\sum\limits_k {{s_k}{e_k}{\sigma_k}} }}
+{{\sum\limits_k {{s_k}{e_k}} }}} \right] - {\delta_{ij}}{\sigma_i}
+\end{equation}
+
+\noindent For uniform $\sigma$, equation~(\ref{eq:EPS}) takes the form:
+
+\begin{equation}
+{\varepsilon_{ij}} =  - \frac{{{e_i}{s_j}(1 - \sigma )}}
+{{\sum\limits_k {{s_k}{e_k}} }} - {\delta_{ij}}\sigma
+\end{equation}
+
+\noindent And with a uniform $\sigma$ and $e$, i.e. the CES assumption, we have:
+
+\begin{equation}
+{\varepsilon_{ij}} =  - {s_j}(1 - \sigma ) - {\delta_{ij}}\sigma  =
+\sigma ({s_j} - {\delta_{ij}}) - {s_j}
+\end{equation}
+
+\noindent Finally, for a uniform $e$ only, the matrix of elasticities is:
+
+\begin{equation}
+{\varepsilon_{ij}} = {s_j}\left[ {{\sigma_j} - (1 - {\sigma_i}) -
+\sum\limits_k {{s_k}{\sigma_k}} } \right] - {\delta_{ij}}{\sigma_i}
+\end{equation}
+
+The income elasticities are derived in a similar fashion:
+
+\begin{equation}
+\label{eq:ETA}
+\eta_i = \frac{\partial {x_i}} {\partial Y} \frac{Y} {{x_i}} =
+   \frac {1} {\sum\limits_k {{s_k} {e_k}}}
+   \left[ {e_i}{b_i} - \sum\limits_k {s_k} {e_k}{b_k} \right]
+   - ({b_i} - 1) + \sum\limits_k {{b_k}{s_k}}
+\end{equation}
+
+\noindent For this, we need the elasticity of utility with respect to income:
+
+\begin{equation}
+\label{eq:ETAU}
+\frac{{\partial u}}{{\partial Y}}\frac{Y}{u} =  - \frac{Y}{u}\left( {\frac{{\partial V}}
+{{\partial Y}}} \right)/\left( {\frac{{\partial V}}{{\partial u}}} \right) =
+\frac{1}{{\sum\limits_k {{s_k}{e_k}} }}
+\end{equation}
+
+\noindent Note that for a uniform and unitary $e$, the income elasticity of utility is~1.
+
+\noindent Replacing $b$ with $1-\sigma$, equation~(\ref{eq:ETA}) can be re-written to be:
+
+\begin{equation}
+\label{eq:ETAS}
+{\eta_i} = \frac{1}{{\sum\limits_k {{s_k}{e_k}} }}\left[ {{e_i}(1 - {\sigma_i})
++ \sum\limits_k {{s_k}{e_k}{\sigma_k}} } \right] + {\sigma_i} - \sum\limits_k {{s_k}{\sigma_k}}
+\end{equation}
+
+\noindent With a uniform $\sigma$, the income elasticity becomes:
+
+\begin{equation}
+{\eta_i} = \frac{1}{{\sum\limits_k {{s_k}{e_k}} }}\left[ {{e_i}(1 - \sigma )
++ \sigma \sum\limits_k {{s_k}{e_k}} } \right] = \frac{{{e_i}(1 - \sigma )}}
+{{\sum\limits_k {{s_k}{e_k}} }} + \sigma
+\end{equation}
+
+\noindent With $e$ uniform, the income elasticity is unitary, irrespective of the values of
+the $\sigma$ parameters.
+
+From the Slutsky equation, we can calculate the compensated demand elasticities:
+
+\begin{equation}
+{\xi_{ij}} = {\varepsilon_{ij}} + {s_j}{\eta_i} =  - {\delta_{ij}}{\sigma_i}
++ {s_j}\left[ {{\sigma_j} + {\sigma_i} - \sum\limits_k {{s_k}{\sigma_k}} } \right]
+\end{equation}
+
+\noindent The cross-Allen partial elasticities are equal to the compensated demand
+elasticities divided by the share:
+
+\begin{equation}
+\label{eq:APE}
+\sigma_{ij}^a = {\sigma_j} + {\sigma_i} - \sum\limits_k {{s_k}{\sigma_k}}
+- {\delta_{ij}}{\sigma_i}/{s_j}
+\end{equation}
+
+\noindent It can be readily seen that the difference of the partial elasticities is constant,
+hence the name of \emph{constant difference in elasticities}.
+
+\begin{equation}
+\sigma_{ij}^a - \sigma_{il}^a = {\sigma_j} - {\sigma_l}
+\end{equation}
+
+\noindent With a uniform $\sigma$, we revert back to the standard CES where there is equivalence
+between the CES substitution elasticity and the cross-Allen partial elasticity:
+
+\begin{equation}
+\sigma_{ij}^a = {\sigma}
+\end{equation}
+
+\subsection{Calibration of the CDE}
+
+Calibration assumes that we know the budget shares, the own uncompensated demand elasticities and
+the income elasticities. The weighted sum of the income elasticities must equal 1, so the first
+step in the calibration procedure is to make sure Engel's law holds. One alternative is to fix
+some (or none) of the income elasticities and re-scale the others using least squares. The problem
+is to minimize the following objective function:
+
+\begin{displaymath}
+{\sum\limits_{i \in \Omega } {\left( {{\eta_i} - \eta_i^0} \right)}^2}
+\end{displaymath}
+
+\noindent subject to
+
+\begin{displaymath}
+\sum\limits_{i \in \Omega } {{s_i}{\eta_i}}  = 1 - \sum\limits_{i \notin \Omega } {{s_i}{\eta_i}}
+\end{displaymath}
+
+\noindent where the set $\Omega$ contains all sectors where the income elasticity is not fixed,
+i.e. its complement contains those sectors with fixed income elasticities. The solution is:
+
+\begin{displaymath}
+\begin{array}{*{20}{c}}
+\eta_i = \eta_i^0 + s_i
+\frac{\displaystyle {1 - \sum\limits_{j \notin \Omega } {s_j \eta_j}
+- \displaystyle \sum\limits_{j \in \Omega } {s_j \eta_j^0} }}
+{{\displaystyle \sum\limits_{j \in \Omega } {s_j^2} }}&{\forall i \in \Omega }
+\end{array}
+\end{displaymath}
+
+Calibration of the $\sigma$ parameters is straightforward given the own elasticities and the input
+value shares. The first step is to calculate the Allen partial elasticities, these are simply the
+income elasticity adjusted by the own elasticities divided by the budget shares:
+
+\begin{equation}
+\label{eq:APEOWN}
+\sigma_{ii}^a = {\eta_i} + \frac{{{\varepsilon_{ii}}}}{{{s_i}}}
+\end{equation}
+
+Next, equation~(\ref{eq:APE}) is setup in matrix form:
+
+\begin{equation}
+\sigma_{ii}^a = A{\sigma_i}
+\end{equation}
+
+\noindent where the matrix $A$ has the form:
+\begin{equation}
+A = \left[
+{\begin{array}{*{20}{c}}
+\displaystyle  {2 - \frac {1}{{{s_1}}} - {s_1}}&{ - {s_2}}& \ldots &{ - {s_n}}\\
+{ - {s_1}} & \displaystyle {2 - \frac{1}{{{s_2}}} - {s_2}}& \ldots &{ - {s_n}}\\
+ \vdots & \vdots & \ddots & \vdots \\
+{ - {s_1}}&{ - {s_2}}& \ldots & \displaystyle {2 - \frac{1}{{{s_n}}} - {s_n}}
+\end{array}} \right]
+\end{equation}
+
+\noindent or each element of $A$ has the following formula:
+
+\begin{displaymath}
+{a_{ij}} = {\delta_{ij}}(2 - 1/{s_i}) - {s_j}
+\end{displaymath}
+
+\noindent We can then solve for $\sigma$ (and back-out the $b$ parameters):
+
+\begin{equation}
+\label{eq:SIGMACAL}
+{\sigma_i} = {A^{ - 1}}\sigma_{ii}^a
+\end{equation}
+
+\noindent There is nothing which guarantees the consistency of the calibrated $\sigma$ parameters,
+which are meant to be positive. The calculation of the $\sigma$ parameters depends only on the
+budget shares and the own-price uncompensated elasticities. If the calibrated $\sigma$ parameters
+are not all positive, one could modify the elasticities until consistency is achieved. In practice,
+problems have occurred when a sector's budget share dominates total expenditure.
+
+The $e$ parameters are derived from Equation~(\ref{eq:ETAS}) and normalizing them so that their
+share weighted sum is equal to 1. Equation~(\ref{eq:ETAS}) can then be converted to matrix form
+and inverted:
+
+\begin{equation}
+B = \left[ {\begin{array}{*{20}{c}}
+{{s_1}{\sigma_1} + (1 - {\sigma_1})}&{{s_2}{\sigma_2}}& \ldots &{{s_n}{\sigma_n}}\\
+{{s_1}{\sigma_1}}&{{s_2}{\sigma_2} + (1 - {\sigma_2})}& \ldots &{{s_n}{\sigma_n}}\\
+ \vdots & \vdots & \ddots & \vdots \\
+{{s_1}{\sigma_1}}&{{s_2}{\sigma_2}}& \ldots &{{s_n}{\sigma_n} + (1 - {\sigma_n})}
+\end{array}} \right]
+\end{equation}
+
+\noindent or
+
+\begin{displaymath}
+{b_{ij}} = {s_j}{\sigma_j} + {\delta_{ij}}(1 - {\sigma_i})
+\end{displaymath}
+
+\noindent Then the $e$ parameters are derived from matrix inversion:
+
+\begin{equation}
+\label{eq:ECAL}
+{e_i} = {B^{ - 1}}{C_i} = {B^{ - 1}}\left( {{\eta_i} - {\sigma_i}
++ \sum\limits_k {{s_k}{\sigma_k}} } \right)
+\end{equation}
+
+Calibration of the $\alpha$ parameters is based on equations~(\ref{eq:CDEV}) and~(\ref{eq:CDEP}).
+Start first with equation~(\ref{eq:CDEP}) and write it in terms relative to consumption
+of good~1, i.e.:
+
+\begin{equation}
+\frac{{{x_i}}}{{{x_1}}} =
+\frac {\displaystyle {{\alpha_i}{b_i}{u^{{e_i}{b_i}}}
+{{\left( {\frac{\displaystyle {{p_i}}}{\displaystyle Y}} \right)}^{{b_i} - 1}}}}
+{\displaystyle {{\alpha_1}{b_1}{u^{{e_1}{b_1}}}
+{{\left( {\frac{\displaystyle {{p_1}}}{\displaystyle Y}} \right)}^{{b_1} - 1}}}}
+\end{equation}
+
+\noindent This equation can be used to isolate $\alpha_i$:
+
+\begin{equation}
+\label{eq:alphaCal1}
+{\alpha_i} = \frac{\displaystyle {{x_i}}}{\displaystyle {{x_1}}}
+\frac{\displaystyle {{\alpha_1}{b_1} {\displaystyle u^{{e_1}{b_1}}}
+{{\left( {\frac{\displaystyle {{p_1}}}{\displaystyle Y}} \right)}^{{b_1} - 1}}}}
+{\displaystyle {{b_i}{u^{{e_i}{b_i}}}
+{{\left( {\frac{\displaystyle {{p_i}}}{\displaystyle Y}} \right)}^{{b_i} - 1}}}}
+\end{equation}
+
+\noindent and then inserted into equation~(\ref{eq:CDEP}):
+
+\begin{equation}
+\label{eq:alphaCal2}
+\sum\limits_{i = 1}^n {{\alpha_i}{u^{{e_i}{b_i}}}{{\left( {\frac{{{p_i}}}{Y}} \right)}^{{b_i}}}}
+= {\alpha_1}{u^{{e_1}{b_1}}}\frac{{{b_1}}}{{{s_1}}}{\left( {\frac{{{p_1}}}{Y}} \right)^{{b_1}}}
+\left[ {\sum\limits_{i = 1}^n {\frac{{{s_i}}}{{{b_i}}}} } \right] \equiv 1
+\end{equation}
+
+\noindent The final expression in equation~(\ref{eq:alphaCal2}) can be used to solve for
+$\alpha_1$ since the formula must equal~1 by definition:
+
+\begin{equation}
+{\alpha_1} = {u^{ - {e_1}{b_1}}}\frac{{{s_1}}}{{{b_1}}}
+{\left( {\frac{Y}{{{p_1}}}} \right)^{{b_1}}}
+{\left[ {\sum\limits_{i = 1}^n {\frac{{{s_i}}}{{{b_i}}}} } \right]^{ - 1}}
+\end{equation}
+
+\noindent Substituting back into equation~(\ref{eq:alphaCal2}) we get:
+
+\begin{equation}
+{\alpha_i} = \frac{{{x_i}}}{{{b_i}}}{u^{ - {e_i}{b_i}}}
+{\left( {\frac{Y}{{{p_i}}}} \right)^{{b_i} - 1}}{\left[ {\sum\limits_{j = 1}^n
+{\frac{{{s_j}}}{{{b_j}}}} } \right]^{ - 1}}
+\end{equation}
+
+\noindent The final calibration expression is then the following:
+
+\begin{equation}
+\label{eq:alphaCal}
+{\alpha_i} = \frac{{{s_i}}}{{{b_i}}}{\left( {\frac{Y}{{{p_i}}}} \right)^{{b_i}}}
+\frac{{{u^{ - {e_i}{b_i}}}}}{{\sum\limits_{j = 1}^n {\frac{{{s_j}}}{{{b_j}}}} }}
+\end{equation}
+
+Utility is undefined in the base data and it is easiest to simply set it to~1.
+
+In conclusion, for calibration we need the budget shares, initial prices, total expenditure,
+income elasticities and the own-price uncompensated elasticities. From this, we can derive
+base year consumption volumes, the Allen partial substitution elasticities through
+equation~(\ref{eq:APEOWN}), $\sigma$ (and therefore $b$) through equation~(\ref{eq:SIGMACAL})
+and the inversion of the $A$-matrix, $e$ through equation~(\ref{eq:ECAL}) and inversion of the
+$B$-matrix, and finally $\alpha$ through equation~(\ref{eq:alphaCal}).
+
+It is possible that the initial shares and elasticities lead to inconsistent calibrated values
+for the $b$ or $e$ parameters. One solution, modified from \cite{Hertel1997}, is to implement some
+sort of maximum entropy method---explicitly imposing the constraints on the parameters. Step~1
+is to calibrate the $b$-parameters using the following minimization problem:
+
+\begin{displaymath}
+\min L = \sum\limits_i {{s_i}{{({\varepsilon_{ii}} - \varepsilon_{ii}^0)}^2}}
+\end{displaymath}
+
+\noindent subject to
+
+\begin{displaymath}
+{\varepsilon_{ii}} = (1 - {b_i})\;({s_i} - 1) - {s_i}\left[ {{b_i} + {\eta_i}
+- \sum\limits_j {{s_j}{b_j}} } \right]
+\end{displaymath}
+
+\begin{displaymath}
+0 < {b_i} < 1
+\end{displaymath}
+
+The loss function is a weighted some of square errors where $\varepsilon^0$ represents the
+initial or target own-price elasticity and $\varepsilon$ will be the estimated elasticity with
+the constraints holding. The first constraint is a transformation of equation~(\ref{eq:EPS0})
+where the income elasticity is substituted into the definition of the own-price elasticity
+(swapping out for the yet unknown $e$-coefficients). One critical issue is to ascertain what
+income elasticities to use in the formula above. One could use the target income elasticities,
+or an initial transformation of the target elasticities such as described above.
+
+The next step calibrates the $e$-parameters with some target income elasticities as given as well
+as the now calibrated $b$-parameters. The minimization problem is formulated as the following:
+
+\begin{displaymath}
+\min L = \sum\limits_i {{s_i}{{({\eta_i} - \eta_i^0)}^2}}
+\end{displaymath}
+
+\noindent subject to
+
+\begin{displaymath}
+{\eta_i} = \frac{1}{{\sum\limits_k {{s_k}} {e_k}}}\left[ {{e_i}{b_i}
+- \sum\limits_k {{s_k}} {e_k}{b_k}} \right] - ({b_i} - 1) + \sum\limits_k {{b_k}{s_k}}
+\end{displaymath}
+
+\begin{displaymath}
+\sum\limits_i {{s_i}{\eta_i}}  \equiv 1
+\end{displaymath}
+
+\begin{displaymath}
+\left( {{\eta_i} - 1} \right)\;\left( {\eta_i^0 - 1} \right) > 0
+\end{displaymath}
+
+The final constraint insures that the estimated income elasticities preserve their relationship
+relative to~1, i.e. target elasticities lower than~1 remain lower than~1 in the
+estimation procedure.
+
+\subsection{CDE in first differences}
+
+It is useful to decompose changes in demand using a linearized version of the
+demand function, and that which is used in the standard GEMPACK version of the CDE function.
+The CDE implicit utility function can be used to derive a relation between changes in
+income, utility and prices (all in per capita terms). The first step in the
+differentiation of the utility function, equation~(\ref{eq:CDEV}), leads to the
+following expression:
+
+\[\begin{array}{*{20}{l}}
+0& = &{\sum\limits_i {\displaystyle {\alpha_i}{e_i}{b_i}{u^{{e_i}{b_i} - 1}}{{\left( {\frac{{{p_i}}}{Y}} \right)}^{{b_i}}}du} }\\
+{}& - &{\sum\limits_i {\displaystyle{\alpha_i}{b_i}{u^{{e_i}{b_i}}}{{\left( {\frac{p_i}{Y}} \right)}^{{b_i} - 1}}\frac{{{p_i}}}{{{Y^2}}}dY} }\\
+{}& + &{\sum\limits_i {\displaystyle{\alpha_i}{b_i}{u^{{e_i}{b_i}}}{{\left( {\frac{p_i}{Y}} \right)}^{{b_i} - 1}}\frac{1}{Y}d{p_i}} }
+\end{array}\]
+
+\noindent This can be simplified by inserting the expression for the demand equation, equation~(\ref{eq:CDEP}),
+and replacing demand with the budget shares ($s_i$):
+
+\[0 = \frac{{du}}{u}\sum\limits_i {{e_i}{s_i}}  - \frac{{dY}}{Y}\sum\limits_i {{s_i}}  + \sum\limits_i {{s_i}\frac{{d{p_i}}}{{{p_i}}}}
+\]
+
+\noindent And the final expression can be written as:
+
+\begin{equation}
+\label{eq:YPCT}
+\overset{.}{Y}=\sum_i{e_is_i}\overset{.}{u}+\sum_i{s_i\overset{.}{p_i}}
+\end{equation}
+
+\noindent where the dotted variables represent the percent change (and noting that the sum of the budget shares is equal to 1).
+
+The differentiation of the demand function, equation~(\ref{eq:CDEP}) is somewhat more tedious. The first step
+leads to the following expression:
+
+\[\begin{array}{*{20}{l}}
+{d{x_i}}& = &\displaystyle {{\alpha _i}{b_i}{e_i}{b_i}{u^{{e_i}{b_i} - 1}}{{\left( {\frac{{{p_i}}}{Y}} \right)}^{{b_i} - 1}}\frac{{du}}{D}}\\
+{}& + &\displaystyle {{\alpha _i}{b_i}{u^{{e_i}{b_i}}}\left( {{b_i} - 1} \right){{\left( {\frac{{{p_i}}}{Y}} \right)}^{{b_i} - 2}}\frac{1}{Y}\frac{{d{p_i}}}{D}}\\
+{}& - &\displaystyle {{\alpha _i}{b_i}{u^{{e_i}{b_i}}}\left( {{b_i} - 1} \right){{\left( {\frac{{{p_i}}}{Y}} \right)}^{{b_i} - 2}}\frac{{{p_i}}}{{{Y^2}}}\frac{{dY}}{D}}\\
+{}& - &\displaystyle {{\alpha _i}{b_i}{u^{{e_i}{b_i}}}{{\left( {\frac{{{p_i}}}{Y}} \right)}^{{b_i} - 1}}{D^{ - 2}}\sum\limits_j {{\alpha _j}{b_j}{e_j}{b_j}{u^{{e_j}{b_j} - 1}}{{\left( {\frac{{{p_j}}}{Y}} \right)}^{{b_j}}}du} }\\
+{}& - &\displaystyle {{\alpha _i}{b_i}{u^{{e_i}{b_i}}}{{\left( {\frac{{{p_i}}}{Y}} \right)}^{{b_i} - 1}}{D^{ - 2}}\sum\limits_j {{\alpha _j}{b_j}{b_j}{u^{{e_j}{b_j}}}{{\left( {\frac{{{p_j}}}{Y}} \right)}^{{b_j} - 1}}\frac{1}{Y}d{p_j}} }\\
+{}& + &\displaystyle {{\alpha _i}{b_i}{u^{{e_i}{b_i}}}{{\left( {\frac{{{p_i}}}{Y}} \right)}^{{b_i} - 1}}{D^{ - 2}}\sum\limits_j {{\alpha _j}{b_j}{b_j}{u^{{e_j}{b_j}}}{{\left( {\frac{{{p_j}}}{Y}} \right)}^{{b_j} - 1}}\frac{{{p_j}}}{{{Y^2}}}dY} }
+\end{array}\]
+
+\noindent where $D$ is the denominator in the demand equation. This can be simplified to the following expression in terms of the percent changes:
+
+\[\begin{array}{*{20}{l}}
+\overset{.}{x_i}& = &\displaystyle
+e_i b_i \overset{.}{u} +
+\left( b_i - 1 \right) \overset{.}{p_i} -
+\left( b_i - 1 \right) \overset{.}{Y} \\
+{}& - &\displaystyle
+\sum\limits_j {e_j b_j s_j} \overset{.}{u}  -
+\sum\limits_j {b_j s_j \overset{.}{p_j}} +
+\sum\limits_j {b_j s_j} \overset{.}{Y}
+\end{array}\]
+
+\noindent Re-grouping terms, the expression becomes:
+
+\[\begin{array}{*{20}{l}}
+\overset{.}{x_i}& = &(b_i - 1)\overset{.}{p_i} - \sum\limits_j {b_j s_j \overset{.}{p_j}} \\
+{}& + & \overset{.}{u}\left[ e_i b_i - \sum\limits_j {e_j b_j s_j } \right]\\
+{}& + & \overset{.}{Y}\left[ \sum\limits_j {b_j s_j}  - \left( b_i - 1 \right) \right]
+\end{array}\]
+
+\noindent The percent change in $u$ can be replaced with the expression above, equation~(\ref{eq:YPCT}),
+to yield the following after re-arrangement:
+
+\[\begin{array}{*{20}{l}}
+\overset{.}{x_i} & = & \displaystyle
+\left(b_i - 1\right)\overset{.}{p_i} -
+\sum\limits_j {b_j s_j \overset{.}{p_j}}  - \frac{1}{\sum\limits_k {e_k s_k}}
+\sum\limits_j {s_j \overset{.}{p_j} \left[ e_i b_i - \sum\limits_k {{e_k}{b_k}{s_k}} \right]} \\
+{}& + & \displaystyle
+\overset{.}{Y}\left[ \sum\limits_k {b_k s_k}  - \left( b_i - 1 \right)
++ \frac{1}{\sum\limits_k {e_k s_k }} \left( e_i b_i - \sum\limits_k {e_k b_k s_k}  \right) \right]
+\end{array}\]
+
+\noindent The final formula inserts the formulas for the income and price elasticities from above to
+simplify further to the following expression:
+
+\begin{equation}
+\label{eq:XPCT}
+\overset{.}{x_i} = \displaystyle
+\sum_j{\varepsilon_{ij}\overset{.}{p_j}} + \eta_i \overset{.}{Y}
+\end{equation}

@@ -1,0 +1,405 @@
+% The AIDADS description
+
+Many commonly used utility functions typically exhibit poor Engel behavior---particularly
+in a dynamic framework. The CDE utility function, popularized by the GTAP model
+(see \cite{Hertel1997}), has relatively constant income elasticities. The LES utility
+function has even worse behavior, as in the absence of any shifts in the
+underlying parameters, the LES converges relatively quickly to a Cobb-Douglas utility
+function as rapidly rising consumption tends to dominate the floor consumption parameters,
+even when adjusting the latter to take into account population growth.
+Rimmer and Powell (see \cite{RimmerPowell1992A}, \cite{RimmerPowell1992B} and \cite{RimmerPowell1996})
+examine an extension to the standard LES demand system that in effect allows the marginal
+propensity to consumer parameter to be driven by changes in utility. Their utility function
+has been called An Implicitly Direct Additive Demand System, or AIDADS. The LES function
+is a special case of the AIDADS system where the marginal propensity variable is constant.
+This extension allows for more complex demand behavior, as well as providing better validation for
+observed changes in consumption patterns.\footnote{AIDADS has also been explored in the context
+of the GTAP model, see for example \cite{Yuetal2003}.}
+
+\subsection{Basic formulation}
+
+AIDADS starts with the implicitly additive utility function given by:
+
+\begin{equation}
+\label{eq:AIDADSPRIMAL}
+\sum\limits_i {{U_i}\left( {{x_i},u} \right) \equiv 1}
+\end{equation}
+
+\noindent Assume the following functional form for the utility function:
+
+\begin{equation}
+\label{eq:AIDADSU}
+{U_i} = {\mu _i}\ln \left( {\frac{{{x_i} - {\gamma _i}}}{{A{e^u}}}} \right)
+\end{equation}
+
+\noindent where
+
+\begin{equation}
+\label{eq:AIDADSMPC}
+\mu_i = \frac{{{\alpha_i} + {\beta_i}G\left( u \right)}}{{1 + G\left( u \right)}}
+\end{equation}
+
+\noindent with the restrictions
+
+\[\sum\limits_i {{\alpha _i}}  = \sum\limits_i {{\beta _i}}  = 1\]
+\[0 \le {\alpha _i} \le 1\]
+\[0 \le {\beta _i} \le 1\]
+\[{\gamma _i} < {x_i}\]
+
+Cost minimization implies the following:
+\[\min \sum\limits_i {{p_i}{x_i}} \]
+
+\noindent subject to
+
+\begin{equation}
+\label{eq:AIDADSPRIMAL2}
+\sum\limits_i {{\mu _i}\ln \left( {\frac{{{x_i} - {\gamma _i}}}{{A{e^u}}}} \right) \equiv 1}
+ \end{equation}
+
+The first order conditions lead to:
+
+\begin{equation}
+\label{eq:AIDADSFOC1}
+\lambda \frac{{\partial {U_i}}}{{\partial {x_i}}} = {p_i} =
+   \lambda \frac{{{\mu _i}}}{{{x_i} - {\gamma _i}}} \Rightarrow \lambda {\mu _i} =
+   {p_i}{x_i} - {p_i}{\gamma _i}
+\end{equation}
+
+\noindent Taking the sum over $i$ and using the fact that the $\mu_i$ sum to unity implies:
+
+\begin{equation}
+\label{eq:AIDADSFOC2}
+\lambda  = \sum\limits_i {{p_i}{x_i}}  - \sum\limits_i {{p_i}{\gamma _i}}
+   = Y - \sum\limits_i {{p_i}{\gamma _i}}  = {Y^*}
+\end{equation}
+
+\noindent where $Y$ is aggregate expenditure, and $Y^*$, sometimes referred to as supernumerary
+income, is residual expenditure after subtracting total expenditure on the so-called
+subsistence minima, $\gamma$.
+
+Re-inserting equation~(\ref{eq:AIDADSFOC2}) into~(\ref{eq:AIDADSFOC1}) yields the consumer demand
+equations:
+
+\begin{equation}
+\label{eq:AIDADSDEM}
+{x_i} = {\gamma _i} + \frac{{{\mu _i}}}{{{p_i}}}{Y^*} =
+   {\gamma _i} + \frac{{{\mu _i}}}{{{p_i}}}\left[ {Y - \sum\limits_j {{p_j}{\gamma _j}} } \right]
+\end{equation}
+
+Equation~(\ref{eq:AIDADSDEM}) is virtually identical to the LES demand equation.
+Similar to the linear expenditure system (LES), demand is the sum of two components---a
+subsistence minimum, $\gamma$, and a share, $\mu$, of supernumerary income. Unlike the LES,
+the share parameter, $\mu$, is not constant, but depends on the level of utility itself.
+AIDADS collapses to the LES if each $\alpha$ parameter is equal to the corresponding $\beta$
+parameter, with the ensuing function of utility, $G(u)$, dropping from
+equation~(\ref{eq:AIDADSMPC}).
+
+\subsection{Elasticities}
+
+This section develops the main expressions for the income and price elasticities.
+These formulas will be needed to calibrate the initial parameters of the AIDADS function.
+
+\subsubsection{Income elasticities}
+
+To derive further properties of AIDADS requires specifying a functional form for $G(u)$.
+\cite{RimmerPowell1996} propose the following:
+
+
+\begin{equation}
+\label{eq:AIDADSG}
+G(u) = {e^u}
+\end{equation}
+
+The first step is to calculate the marginal budget share, $\rho$ , defined as:
+
+\[{\rho _i} = {p_i}\frac{{\partial {x_i}}}{{\partial Y}}\]
+
+The following expression can be derived from equation~(\ref{eq:AIDADSDEM}):
+
+\[\frac{{\partial {x_i}}}{{\partial Y}} =
+   \frac{{{Y^*}}}{{{p_i}}}\frac{{\partial {\mu _i}}}{{\partial Y}} +
+   \frac{{{\mu _i}}}{{{p_i}}}\frac{{\partial {Y^*}}}{{\partial Y}} =
+   \frac{{{Y^*}}}{{{p_i}}}\frac{{\partial {\mu _i}}}{{\partial u}}\frac{{\partial u}}{{\partial Y}}
+   + \frac{{{\mu _i}}}{{{p_i}}}
+\]
+
+\noindent Thus:
+
+\begin{equation}
+\label{eq:AIDADSRHO}
+\rho_i = \mu_i + {Y^*}\frac{{\partial {\mu _i}}}{{\partial u}}\frac{{\partial u}}{{\partial Y}}
+\end{equation}
+
+Expression~(\ref{eq:AIDADSRHO}) can be expanded in two steps---first evaluating the partial
+derivative of the share variable, $\mu$, with respect to utility, and then the more difficult
+calculation of the partial derivative of $u$ with respect to income. The marginal share formula is:
+
+\[{\mu _i} = \frac{{{\alpha _i} + {\beta _i}{e^u}}}{{1 + {e^u}}}\]
+
+\noindent Its derivative is:
+
+\begin{equation}
+\label{eq:AIDADSDMU}
+\frac{{\partial {\mu _i}}}{{\partial u}} = \frac{{\left( {1 + {e^u}} \right)
+   \left( {{\beta _i}{e^u}} \right) - \left( {{\alpha _i} + {\beta _i}{e^u}} \right)
+   {e^u}}}{{{{(1 + {e^u})}^2}}} = \frac{{{e^u}\left( {{\beta _i} - {\alpha _i}} \right)}}
+{{{{(1 + {e^u})}^2}}}
+\end{equation}
+
+Utility and income are combined in implicit form and thus we will invoke the implicit function
+theorem to calculate the partial derivative of $u$ with respect to $Y$. First, insert
+equation~(\ref{eq:AIDADSDEM}) into equation~(\ref{eq:AIDADSPRIMAL2}):
+
+\[\sum\limits_i {{\mu _i}\ln \left( {\frac{{{x_i} - {\gamma _i}}}{{A{e^u}}}} \right) =
+   \sum\limits_i {{\mu _i}\ln \left( {\frac{{{\mu _i}{Y^*}}}{{A{e^u}{p_i}}}} \right) = } 1}
+\]
+
+\noindent Expanding the latter expression yields:
+
+\begin{equation}
+\label{eq:AIDADSIF1}
+f\left( {u,Y} \right) = \sum\limits_i {{\mu _i}\ln \left( {\frac{{{\mu _i}}}{{{p_i}}}} \right)}
+   + \ln \left( {{Y^*}} \right) - \ln \left( A \right) - u = 1
+\end{equation}
+
+\noindent which provides the implicit relation between $Y$ and $u$. The implicit function theorem
+states the following:
+
+\begin{equation}
+\label{eq:AIDADSIF2}
+\frac{{\partial u}}{{\partial Y}} =  - \frac{{\partial f}}{{\partial Y}}
+   {\left[ {\frac{{\partial f}}{{\partial u}}} \right]^{ - 1}}
+\end{equation}
+
+\noindent The partial derivative of $f$ with respect to $Y$ is simply:
+
+\begin{equation}
+\label{eq:AIDADSIF3}
+\frac{{\partial f}}{{\partial Y}} = \frac{1}{{{Y^*}}}
+\end{equation}
+
+\noindent The partial derivative of $f$ with respect to $u$ is:
+
+\begin{equation}
+\label{eq:AIDADSIF4}
+\begin{array}{*{20}{l}}
+{\frac{\displaystyle{\partial f}}{\displaystyle{\partial u}}}& = &{ - 1 +
+   \sum\limits_i {\displaystyle \left[ {\frac{{\partial {\mu _i}}}{{\partial u}}
+   \ln \left( {\frac{\displaystyle{{\mu _i}}}{\displaystyle{{p_i}}}} \right) +
+   {\mu _i}\frac{{{p_i}}}{{{\mu _i}}}{p_i}\frac{{\partial {\mu _i}}}{{\partial u}}} \right]} }\\
+{}& = &{ - 1 + \frac{\displaystyle{{e^u}}}{\displaystyle{{{(1 + {e^u})}^2}}}\sum\limits_i
+   {\left[ {\left( {\ln \left( {\frac{\displaystyle{{\mu _i}}}{\displaystyle{{p_i}}}} \right) + 1}
+   \right)\left( {{\beta _i} - {\alpha _i}} \right)} \right]} }\\
+{}& = &{\frac{\displaystyle{{e^u}}}{\displaystyle{{{(1 + {e^u})}^2}}}
+   \left[ {\sum\limits_i {\displaystyle\left( {{\beta _i} - {\alpha _i}} \right)
+   \ln \left( {{x_i} - {\gamma _i}} \right) - \frac{{{{(1 + {e^u})}^2}}}{{{e^u}}}} } \right]}\\
+{}& = &{\frac{\displaystyle{\displaystyle{e^u}}}
+   {\displaystyle{{{(1 + {e^u})}^2}}}{\Omega ^{ - 1}}}
+\end{array}
+\end{equation}
+
+\noindent where
+
+\begin{equation}
+\label{eq:AIDADSOMEGA}
+\Omega  = {\left[ {\sum\limits_i {\left( {{\beta _i} - {\alpha _i}} \right)
+   \ln \left( {{x_i} - {\gamma _i}} \right) -
+   \frac{{{{\left( {1 + {e^u}} \right)}^2}}}{{{e^u}}}} } \right]^{\; - 1}}
+\end{equation}
+
+\noindent The second line uses equation~(\ref{eq:AIDADSDMU}).
+In the third line, equation~(\ref{eq:AIDADSDEM})
+substitutes for the expression in the logarithm, and the adding up constraint allows for the
+deletion of non-indexed variables. Substituting equations~(\ref{eq:AIDADSIF3})
+and~(\ref{eq:AIDADSIF4}) into equation~(\ref{eq:AIDADSIF2}) yields:
+
+\begin{equation}
+\label{eq:AIDADSIF5}
+\frac{{\partial u}}{{\partial Y}} =
+- \frac{\Omega }{{{Y^*}}}\frac{{{{\left( {1 + {e^u}} \right)}^2}}}{{{e^u}}}
+\end{equation}
+
+\noindent Substituting equations~(\ref{eq:AIDADSDMU}) and~(\ref{eq:AIDADSIF5}) into
+equation~(\ref{eq:AIDADSRHO}) yields the following expression for $\rho$:
+
+\[
+{\rho _i} = {\mu _i} - \left( {{\beta _i} - {\alpha _i}} \right)\;\Omega
+\]
+
+\noindent The income elasticities are derived from the following expression:
+
+\[
+{\eta _i} = \frac{{\partial {x_i}}}{{\partial Y}}\frac{Y}{{{x_i}}} =
+   \frac{{\partial {x_i}}}{{\partial Y}}\frac{Y}{{{x_i}}}
+   \frac{{{p_i}}}{{{p_i}}} = \frac{{{\rho _i}}}{{{s_i}}}
+\]
+
+\noindent where $s_i$ is the average budget share:
+
+\[
+{s_i} = \frac{{{p_i}{x_i}}}{Y} = \frac{{{p_i}{\gamma _i}}}{Y} + {\mu _i}\frac{{{Y^*}}}{Y}
+   = {\mu _i} + \left( {\frac{{{p_i}{\gamma _i}
+   - {\mu _i}\sum\limits_j {{p_j}{\gamma _j}} }}{Y}} \right)
+\]
+
+\noindent Thus the income elasticity, $\eta$, is equal to the ratio of the marginal budget
+share, $\rho$, and the average budget share, $s$. Finally, equation~(\ref{eq:AIDADSETA})
+describes one formulation of the income elasticity:
+
+\begin{equation}
+\label{eq:AIDADSETA}
+\eta _i =\frac{\mu_i - \left( \beta_i - \alpha_i \right) \Omega} {s_i}
+\end{equation}
+
+\subsubsection{Price elasticity}
+
+The matrix of substitution elasticities is identical to the expression for the LES and has the form:
+
+\begin{equation}
+\label{eq:AIDADSAPE}
+\sigma_{ij} = \left[ {{\mu_j} - {\delta_{ij}}} \right]
+   \frac{{{\mu_i}{Y^*}}}{{{s_i}{s_j}Y}}
+\end{equation}
+
+\noindent where $\delta$ is the Kronecker delta:
+
+\[
+{\delta _{ij}} = \left\{ {\begin{array}{*{20}{c}}
+1&{i = j}\\
+0&{i \ne j}
+\end{array}} \right.
+\]
+
+\noindent It is clear that the matrix is symmetric.
+The matrix of substitution elasticities is also equal to:
+
+\[{\sigma _{ij}} = \left[ {{\mu _j} - {\delta _{ij}}} \right]
+   \frac{{{\mu _i}{Y^*}}}{{{s_i}{s_j}Y}} = \frac{{\left( {{x_i} - {\gamma _i}} \right)}}
+   {{{x_i}}}\frac{{\left( {{x_j} - {\gamma _j}} \right)}}{{{x_j}}}\frac{Y}{{{Y^*}}} -
+   \frac{{{\delta _{ij}}}}{{{s_j}}}\frac{{\left( {{x_i} - {\gamma _i}} \right)}}{{{x_i}}}
+\]
+
+The compensated demand elasticities derive from the following:
+
+\begin{equation}
+\label{eq:AIDADSCDE}
+{\xi _{ij}} = {s_j}{\sigma _{ij}} = \left[ {{\mu _j} - {\delta _{ij}}} \right]
+   \frac{{{\mu _i}{Y^*}}}{{{s_i}Y}}
+\end{equation}
+
+Finally, the matrix of uncompensated demand elasticities is given by:
+
+\begin{equation}
+\label{eq:AIDADSUED1}
+{\varepsilon _{ij}} = {\xi _{ij}} - {s_j}{\eta _i} =
+   \left[ {{\mu _j} - {\delta _{ij}}} \right]\;\frac{{{\mu _i}{Y^*}}}{{{s_i}Y}} - {s_j}{\eta _i}
+\end{equation}
+
+\noindent The uncompensated demand elasticities can also be written as:
+
+\begin{equation}
+\label{eq:AIDADSUED2}
+{\varepsilon _{ij}} =  - \frac{{{\mu _i}}}{{{s_i}Y}}\left[ {{p_j}{\gamma _j} +
+   {\delta _{ij}}{Y^*}} \right] +
+   \frac{{{s_j}}}{{{s_i}}}\left( {{\beta _i} - {\alpha _i}} \right)\Omega
+\end{equation}
+
+The first term on the right-hand side is always negative. The second term differs from the LES
+expression for the uncompensated demand elasticities.\footnote{Recall that for the LES, the
+$\alpha$ and $\beta$ terms are equal and thus the second term drops.}  We can see from
+expression~(\ref{eq:AIDADSUED2}) that the AIDADS specification allows for both gross
+complementarity and substitution. As well, it allows for luxury goods, i.e. positive own-price
+demand elasticities should the second term be positive and greater than the first term.
+
+\subsection{Implementation}
+
+Implementation of AIDADS is somewhat more complicated than the LES since the marginal propensity to
+ consume out of supernumerary income is endogenous, and utility is defined implicitly.
+The following four equations are needed for model implementation:
+
+\begin{equation}
+\label{eq:AIDADSIMP1}
+{Y^*} = Y - \sum\limits_i {{p_i}{\gamma _i}}
+\end{equation}
+
+\begin{equation}
+\label{eq:AIDADSIMP2}
+{x_i} = {\gamma _i} + \frac{{{\mu _i}}}{{{p_i}}}{Y^*}
+\end{equation}
+
+\begin{equation}
+\label{eq:AIDADSIMP3}
+{\mu _i} = \frac{{{\alpha _i} + {\beta _i}{e^u}}}{{1 + {e^u}}}
+\end{equation}
+
+\begin{equation}
+\label{eq:AIDADSIMP4}
+u = \sum\limits_i {{\mu _i}\ln \left( {{x_i} - {\gamma _i}} \right)}  - 1 - \ln \left( A \right)
+\end{equation}
+
+Equations~(\ref{eq:AIDADSIMP1}) and~(\ref{eq:AIDADSIMP2}) are identical to their LES and ELES
+counterparts.\footnote{Though the definition of $Y$ includes
+savings in the case of the ELES.}
+Equation~(\ref{eq:AIDADSIMP3}) determines the level of the marginal propensity to
+consume out of supernumerary income, $\mu$, which is a constant in the case of the LES (ELES).
+It requires however the calculation of the utility level, $u$, which is defined in
+equation~(\ref{eq:AIDADSIMP4}).
+
+\subsection{Calibration}
+
+[To be updated] Calibration requires more information than the LES. Where the LES has $2n$
+parameters to calibrate (subject to consistency constraints), AIDADS has $3n$ parameters
+(less the consistency requirements)---$\alpha$, $\beta$ and $\gamma$. The calibration system
+includes equations~(\ref{eq:AIDADSIMP1}) through~(\ref{eq:AIDADSIMP4}) which have $2+2n$ endogenous
+variables ($Y^*$, $\gamma$, $\mu$, and $A$). There are no equations for calibrating the $\alpha$
+and $\beta$ parameters. If we have knowledge of the income elasticities, we can add the following
+equations:
+
+\begin{equation}
+\label{eq:AIDADSIMP5}
+\Psi  = \frac{1}{\Omega } = \left[ {\sum\limits_i {\left( {{\beta _i} - {\alpha _i}} \right)
+   \ln \left( {{x_i} - {\gamma _i}} \right) -
+   \frac{{{{\left( {1 + {e^u}} \right)}^2}}}{{{e^u}}}} } \right]
+\end{equation}
+
+\begin{equation}
+\label{eq:AIDADSIMP6}
+{\eta _i} = \frac{{{\rho _i}}}{{{s_i}}} = \frac{{{\mu _i} - \left( {{\beta _i}
+- {\alpha _i}} \right) \Omega }}{{{s_i}}} = \frac{{{\mu _i}}}{{{s_i}}} -
+   \frac{{\left( {{\beta _i} - {\alpha _i}} \right)}}{{{s_i}\Psi }}
+\end{equation}
+
+There are an additional $1+n$ equations, solving for $\Psi$ and $\alpha$. There is need for an
+additional $n$ equations. Assuming we have knowledge of at least $n$ price elasticities, for example
+the own-price elasticities, we can add the following equation:
+
+\begin{equation}
+\label{eq:AIDADSIMP7}
+{\varepsilon _{ii}} =  - \frac{{{\mu _i}}}{{{s_i}Y}}\left[ {{p_i}{\gamma _i} + {Y^*}} \right] +
+   \left( {{\beta _i} - {\alpha _i}} \right)\Omega
+\end{equation}
+
+The $\alpha$ and $\beta$ parameters are not independent, the following restrictions must hold:
+
+\begin{equation}
+\label{eq:AIDADSIMP8}
+\sum\limits_i {{\alpha_i} = 1}
+\end{equation}
+
+\begin{equation}
+\label{eq:AIDADSIMP9}
+\sum\limits_i {{\beta_i} = 1}
+\end{equation}
+
+The system is under-determined, there are $5+4n$ equations and $3+4n$ variables. One solution, is
+to make the own-price elasticities endogenous. In this case, we are adding $n$ variables, but then
+the system is over-determined. We can minimize a loss function with respect to the
+price elasticities:
+
+\[L = \sum\limits_i {{{\left( {{\varepsilon _i} - \varepsilon _i^0} \right)}^2}} \]
+
+\noindent where $\varepsilon^0$ represents an initial guess of the own-price elasticities and the
+calibration algorithm will calculate the endogenous $\varepsilon$ in order to minimize the loss
+function, subject to constraints~(\ref{eq:AIDADSIMP5}) through~(\ref{eq:AIDADSIMP9}) and the model
+equations~(\ref{eq:AIDADSIMP1}) through~(\ref{eq:AIDADSIMP4}). The exogenous parameters in the
+calibration procedure include $p$, $x$, $s$, $Y$, $\eta$, $\varepsilon^0$ and $u$.

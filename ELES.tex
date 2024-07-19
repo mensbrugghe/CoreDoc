@@ -1,0 +1,222 @@
+% The ELES description
+
+Many models assume separability in household decision making between saving and current consumption.
+Lluch and Howe\footnote{See \cite{Lluch1973} and \cite{Howe1975}.} introduced a relatively
+straightforward extension of the LES consumer demand function to include the saving decision
+simultaneously with the allocation of income on goods and services, this has become known as the
+extended linear expenditure system or the ELES. The ELES is based on consumers maximizing their
+intertemporal utility between a bundle of current consumption and an expected future consumption
+bundle represented in the form of savings.
+
+\subsection{Basic formulation}
+
+The utility function of the ELES has the following form:
+
+\begin{equation}
+\label{eq:ELESU}
+u = \prod\limits_i {\left( x_i - \gamma _i \right)^{\mu_i}}
+   \left( \frac {S} {P^s} \right)^{\mu_s}
+\end{equation}
+
+\noindent with
+
+\begin{equation}
+\label{eq:ELESCONSTRAINT}
+\sum\limits_i {\mu _i}  + \mu _s = 1
+\end{equation}
+
+\noindent where $u$ is utility, $x$ is the vector of consumption goods, $S$ is household saving
+(in value), $P^s$ is the price of saving, and $\mu$ and $\gamma$ are ELES parameters.
+
+The consumer solves the following problem:
+
+\[
+\max \prod\limits_i {\left( x_i - \gamma _i \right)^{\mu_i}}
+   \left( \frac {S} {P^s} \right)^{\mu_s}
+\]
+
+\noindent subject to
+
+\[\sum\limits_{i = 1}^n {{p_i}{x_i}}  + S = Y\]
+
+\noindent where $p$ is the vector of consumer prices, and $Y$ is disposable income.
+The demand functions are:
+
+\begin{equation}
+\label{eq:ELESDEMAND}
+x_i = \gamma_i + \frac {\mu_i} {p_i}
+   \left( Y - \sum\limits_{j = 1}^n {p_j  \gamma_j} \right)
+\end{equation}
+
+\begin{equation}
+\label{eq:ELESSAV}
+S = \mu_s \left( Y - \sum\limits_{j = 1}^n {p_j \gamma_j } \right) =
+   Y - \sum\limits_{j = 1}^n {p_j  x_j}
+\end{equation}
+
+The term in parentheses is sometimes called supernumerary income, i.e. it is the income that
+remains after subtracting total expenditures on the so-called subsistence (or floor) expenditures
+as represented by the $\gamma$  parameter. The parameter $\mu$ then represents the marginal budget
+share out of supernumerary income.
+
+\subsection{ELES elasticities}
+
+From the demand equation we can derive the income and price elasticities:
+
+\begin{equation}
+\label{eq:ELESINCELAS}
+\eta_i = \frac {\mu_i {Y}} {p_i x_i} = \frac {\mu _i} {s_i}   \quad
+   \eta _s = \frac {\mu_s {Y}} {S} = \frac{ \mu_s} {s}
+\end{equation}
+
+\begin{equation}
+\label{eq:ELESOWNPELAS}
+\varepsilon_i = \frac {\gamma_i \left( 1 - \mu _i \right)} {x_i} - 1   \quad
+   \varepsilon_s =  - 1
+\end{equation}
+
+\begin{equation}
+\label{eq:ELESXPELAS}
+\varepsilon_{ij} =  - \frac {\mu_i p_j \gamma_j } {p_i x_i} =
+   - \frac{\mu_i p_j \gamma_j } {s_i Y}   \quad
+   \varepsilon_{sj} =  - \frac{\mu_s p_j \gamma_j } {sY} =
+      - \frac{p_j \gamma_j } {Y^*}
+\end{equation}
+
+\noindent where $s$ is the average propensity to save. Note that the matrix of elasticities can be
+collapsed to a single formula using the Kronecker factor:
+
+\begin{equation}
+\label{eq:ELESPELAS}
+\varepsilon_{ij} = -\frac{\mu_i p_j \gamma_j}{p_i x_i} -
+      \delta_{ij} \frac{p_i x_i - p_i \gamma_i}{p_i x_i}  =
+   - \frac{\mu_i} {s_i Y} \left[ \delta_{ij} Y^* + p_j \gamma _j \right] =
+   - \eta_i \left[ \delta_{ij} \frac{Y^*}{Y} + \frac{p_j \gamma _j}{Y} \right]
+\end{equation}
+
+\noindent The last expression shows that there is clear linkage between the income and price
+elasticities. At the limit, when income is much larger than supernumerary income, the two
+are virtually identical in levels (with opposite signs).
+
+\subsection{Welfare}
+
+With the addition of saving, the indirect utility function is given by:
+
+\begin{equation}
+\label{eq:ELESINDU}
+v(p,Y) = \prod\limits_i { \left( \frac {\mu_i} {p_i} {Y^*} \right)^{\mu _i}}
+   \left( \frac {\mu_s} {P^s} {Y^*} \right)^{\mu _s}
+\end{equation}
+
+\noindent or
+
+\begin{equation}
+\label{eq:ELESINDU2}
+v(p,Y) = \frac{Y^*}{P}
+\end{equation}
+
+\noindent where
+
+\[
+P = \prod\limits_i {\left( \frac{p_i}{\mu_i} \right)^{\mu _i} }
+   \left( \frac{P^s}{\mu _s} \right)^{\mu _s}
+\]
+
+The expenditure function is derived by minimizing the cost of achieving a given level of
+utility, $u$. It is set-up as:
+
+\[\min \sum\limits_{i = 1}^n {{p_i}{x_i}}  + S\]
+
+\noindent subject to
+\[
+\prod\limits_i {\left( x_i - \gamma _i \right)^{\mu _i}}
+   \left( \frac {S} {P^s} \right)^{\mu _s} = u
+\]
+
+\noindent The final expression for the expenditure function is:
+
+\begin{equation}
+\label{eq:ELESEXP}
+   E\left( p,u \right) = \sum\limits_{i = 1}^n {{p_i}{\gamma _i}}  + uP
+\end{equation}
+
+\noindent where $P$, the aggregate price index (including the price of savings) is defined
+as above.
+
+\subsection{Calibration}
+
+Calibration of the ELES uses the budget share information from the base SAM, including the
+household saving share. Typically, calibration uses income elasticities for all of the $n$
+commodities represented in the demand system and uses equation~(\ref{eq:ELESINCELAS}) to derive
+the marginal budget shares, $\mu_i$. This procedure leads to a residual income elasticity, which
+in this case is the income elasticity of saving. The derived savings income elasticity may be
+implausible, in which case adjustments need to be made to individual income elasticities for the
+goods, or adjustments can be made on the group of goods, assuming some target for the savings
+income elasticity.
+
+The first step is therefore to calculate the marginal budget shares using the average budget
+shares and the initial income elasticity estimates.
+
+\[
+   \mu _i = \frac {\eta_i p_i x_i} {Y} = {\eta _i}{s_i}
+\]
+
+The savings marginal budget share is derived from the consistency requirement that the marginal
+budget shares sum to 1:
+
+\[
+   \mu_s = 1 - \sum\limits_{i = 1}^n {{\mu _i}}
+\]
+
+Assuming this procedure leads to a plausible estimate for the savings income elasticity, the next
+step is to calibrate the subsistence minima, $\gamma$. This can be done by seeing that the demand
+equations, (\ref{eq:ELESDEMAND}), are linear in the $\gamma$ parameters. Note that in the case of
+the ELES the system of equation are of full rank because the $\mu_i$ parameters do not sum to 1
+(over the $n$ commodities)---they only sum to 1 including the marginal saving share.\footnote{Note
+that the calibration and the setup of the ELES assume explicitly that the minimal expenditure on
+savings is zero.}
+This may lead to calibration problems if the propensity to save is 0, which may be the case in
+some SAMs with poor households. The linear system can be written as:
+
+\[
+   C = I\gamma  + MY - M \Pi \gamma
+\]
+
+\noindent where $I$ is an $n \times n$ identity matrix, $M$ is a diagonal matrix with
+$\mu_i / P_i$ on the diagonal, and $\Pi$ is a matrix, where each row is identical, each row being
+the transpose of the price vector. The above system of linear equations can be solved via matrix
+inversion for the parameter $\gamma$:
+
+\[
+\gamma = A^{-1} C^*
+\]
+
+\noindent where
+
+\[A = I - M\ \Pi \]
+\[{C^*} = C - MY\]
+
+The matrices $A$ and $C^*$ are defined by:
+
+\[
+   A = \left[ {{a_{ij}}} \right] = \left[ \delta_{ij} -  \mu_i\frac{p_j}{p_i}\right] =
+   \left\{ {\begin{array}{*{20}{l}}
+   {1 - {\mu _i}} & {{\rm{if}}} & {i = j}\\
+   { - {\mu _i} \frac{\displaystyle p_j} {\displaystyle p_i}} & {{\rm{if}}} & {i \ne j}
+\end{array}} \right.
+\]
+
+\[{C^*} = \left[ {{c_i}} \right] = {x_i} - \frac{{{\mu _i}Y}}{{{p_i}}}\]
+
+\noindent The $A$ and $C^*$ matrices are simplified if the price vector is initialized at 1:
+
+\[A = \left[ {{a_{ij}}} \right] = \left\{ {\begin{array}{*{20}{l}}
+{1 - {\mu _i}}&{{\rm{if}}}&{i = j}\\
+{ - {\mu _i}}&{{\rm{if}}}&{i \ne j}
+\end{array}} \right.\]
+
+\[{C^*} = \left[ {{c_i}} \right] = {x_i} - {\mu _i}Y\]
+
+In GAMS one could invert the system of equations embodied in equation~(\ref{eq:ELESDEMAND}) directly
+by solving for the endogenous $\gamma$ while holding all of the other variables and parameters
+fixed.
